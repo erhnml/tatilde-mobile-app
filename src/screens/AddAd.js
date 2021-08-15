@@ -10,10 +10,7 @@ const AddAd = () => {
 
   const renderItem = useCallback(({item, index, drag, isActive}) => {
     return (
-      <TouchableOpacity
-        onLongPress={drag}
-        style={{padding: 10}}
-        disabled={isActive}>
+      <TouchableOpacity onLongPress={drag} style={{padding: 10}}>
         <Image
           style={styles.image}
           source={{uri: `data:${item.mime};base64,${item.data}`}}
@@ -43,8 +40,11 @@ const AddAd = () => {
         <DraggableFlatList
           data={images}
           renderItem={renderItem}
-          keyExtractor={(item, index) => `draggable-item-${item.filename}}`}
-          onDragEnd={({data}) => setImages(data)}
+          keyExtractor={(item, index) => `draggable-item-${item.path}}`}
+          onDragEnd={({data}) => {
+            console.log(data);
+            setImages(data);
+          }}
         />
       </View>
     </View>

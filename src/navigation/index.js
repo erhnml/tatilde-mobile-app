@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {Text, View} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 
@@ -19,7 +19,16 @@ const Tab = createBottomTabNavigator();
 export default function Navigation() {
   const auth = useAuth();
   if (auth.state.loading) {
-    return <Text>Loading...</Text>;
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <Text>Loading...</Text>
+      </View>
+    );
   }
   return (
     <Tab.Navigator
