@@ -12,6 +12,13 @@ function authReducer(state, action) {
         login: true,
         loading: false,
       };
+    case 'LOGOUT':
+      return {
+        ...state,
+        user: null,
+        login: false,
+        loading: false,
+      };
     case 'SWITCH_ACCOUNT':
       return {
         ...state,

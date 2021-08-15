@@ -10,13 +10,19 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
+import IonIcon from 'react-native-vector-icons/Ionicons';
 
 import AnimatedTextType from '../components/AnimatedTextType';
 
 const Home = () => {
   const [isFocused, setIsFocused] = useState(false);
   const [query, setQuery] = useState('');
-  const list = ['Antayla, Kaş', 'Muğla, Bodrum', 'İzmir, Çeşme'];
+  const list = [
+    'Antayla, Kaş',
+    'Muğla, Bodrum',
+    'Antayla, Kemer',
+    'İzmir, Çeşme',
+  ];
   const inputRef = useRef(null);
 
   return (
@@ -45,6 +51,11 @@ const Home = () => {
               <TouchableWithoutFeedback
                 onPress={() => inputRef.current.focus()}>
                 <View style={styles.animationWrapper}>
+                  <IonIcon
+                    name="navigate-circle-outline"
+                    size={24}
+                    style={styles.locationIcon}
+                  />
                   <AnimatedTextType list={list} />
                 </View>
               </TouchableWithoutFeedback>
@@ -89,8 +100,15 @@ const styles = StyleSheet.create({
   searchItem: {
     marginBottom: 15,
   },
-  animationWrapper: {justifyContent: 'center', height: 45},
+  animationWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: 45,
+  },
   animationContainer: {position: 'absolute', left: 10, width: '100%'},
+  locationIcon: {
+    marginRight: 10,
+  },
 });
 
 export default Home;

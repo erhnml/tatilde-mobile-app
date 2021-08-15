@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import IonIcon from 'react-native-vector-icons/Ionicons';
 
 //screens
 import HomeScreen from '../screens/Home';
@@ -12,9 +13,6 @@ import Listing from '../screens/Listing';
 import AddAds from '../screens/AddAd';
 //context
 import {useAuth} from '../context/auth';
-
-//icon
-import IonIcon from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
 

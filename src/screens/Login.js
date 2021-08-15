@@ -1,12 +1,14 @@
 import React from 'react';
 
-import {Text, View, TextInput, Button, Alert} from 'react-native';
+import {Text, View, StyleSheet} from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {useAuth} from '../context/auth';
+import Input from '../components/Input';
+import Button from '../components/Button';
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -31,53 +33,56 @@ const Login = () => {
       <Controller
         control={control}
         render={({field: {onChange, onBlur, value}}) => (
-          <TextInput
+          <Input
             autoCapitalize="none"
             placeholder="Email Address"
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
             keyboardType="email-address"
-            style={{
-              borderWidth: 1,
-              borderColor: '#ddd',
-              height: 45,
-              marginBottom: 10,
-              paddingLeft: 10,
-            }}
+            error={errors.email}
           />
         )}
         name="email"
         defaultValue=""
       />
-      {errors.email && <Text>{errors.email.message}</Text>}
+      {errors.email && <Text style={styles.error}>{errors.email.message}</Text>}
 
       <Controller
         control={control}
         render={({field: {onChange, onBlur, value}}) => (
-          <TextInput
+          <Input
             secureTextEntry={true}
             placeholder="Password"
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
-            style={{
-              borderWidth: 1,
-              borderColor: '#ddd',
-              height: 45,
-              marginBottom: 10,
-              paddingLeft: 10,
-            }}
+            error={errors.password}
           />
         )}
         name="password"
         defaultValue=""
       />
-      {errors.password && <Text>{errors.password.message}</Text>}
+      {errors.password && (
+        <Text style={styles.error}>{errors.password.message}</Text>
+      )}
 
-      <Button color="red" title="Submit" onPress={handleSubmit(onSubmit)} />
+      <Button color="red" title="Login" onPress={handleSubmit(onSubmit)} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  error: {
+    paddingBottom: 10,
+    color: 'red',
+    paddingLeft: 5,
+  },
+});
 
 export default Login;
