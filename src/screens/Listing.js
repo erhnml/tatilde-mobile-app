@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 
-const Favorites = () => {
+const Ads = () => {
   return (
     <View style={styles.wrapper}>
-      <Text>Favoriler</Text>
+      <Text>Ad Listing</Text>
     </View>
   );
 };
@@ -16,4 +16,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-export default Favorites;
+
+export default Ads;
